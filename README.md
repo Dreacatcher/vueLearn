@@ -24,7 +24,7 @@ npm install
 # build for production with minification 
 npm run build
 ```
-# serve with hot reload at localhost:8080
+## serve with hot reload at localhost:8080
 npm run dev
 
-# 直接访问“http://localhost:8080/pages/schoolMap.html”
+## 直接访问“http://localhost:8080/pages/schoolMap.html”
