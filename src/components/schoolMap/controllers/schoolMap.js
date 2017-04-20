@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'app',
+  name: 'schoolMap',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

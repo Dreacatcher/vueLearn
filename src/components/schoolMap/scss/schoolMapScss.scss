@@ -2,21 +2,20 @@
 * @Author: lcm
 * @Date:   2017-04-18 13:45:43
 * @Last Modified by:   lcm
-* @Last Modified time: 2017-04-18 13:46:00
+* @Last Modified time: 2017-04-20 17:30:16
 */
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import '../../../style/_include/_all';
+#app{
+  smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
+  color: $red;
 }
 
-h1, h2 {
-  font-weight: normal;
+h2{
+  color:$black;
+   smoothing: grayscale;
 }
-
 ul {
   list-style-type: none;
   padding: 0;
