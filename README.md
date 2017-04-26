@@ -33,6 +33,6 @@
 ### build for production with minification			 
 `npm run build`	
 
-###直接访问例子	
-				
+### 直接访问例子	
+
 `http://localhost:8080/pages/schoolMap.html`		
