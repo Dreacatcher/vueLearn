@@ -4,8 +4,8 @@ var srcDir = path.resolve(process.cwd(), 'src');
 
 module.exports = {
   entry: {
-    main:'main',
-    schoolMapMain: 'schoolMapMainJs'
+    schoolMapMain: 'schoolMapMainJs',
+    makeAppointmentMain: 'makeAppointmentMainJs'
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -48,9 +48,15 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       'main':srcDir+'/main.js',
       
+      // schoolMap
       'schoolMapJs': srcDir+'/components/schoolMap/controllers/schoolMap',
       'schoolMapMainVue': srcDir+'/components/schoolMap/ui/schoolMapVue',
-      'schoolMapMainJs': srcDir+'/components/schoolMap/schoolMapMain'
+      'schoolMapMainJs': srcDir+'/components/schoolMap/schoolMapMain',
+
+      //makeAppointment
+      'makeAppointmentJs': srcDir+'/components/makeAppointment/controllers/makeAppointment',
+      'makeAppointmentMainVue': srcDir+'/components/makeAppointment/ui/makeAppointmentVue',
+      'makeAppointmentMainJs': srcDir+'/components/makeAppointment/makeAppointmentMain'
     }
   },
   devServer: {
@@ -63,9 +69,9 @@ module.exports = {
   devtool: '#eval-source-map'
 }
 
+// 增加生产的环境判断
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
-  // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
@@ -73,7 +79,7 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
+      sourceMap: false,
       compress: {
         warnings: false
       }

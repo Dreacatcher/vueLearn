@@ -1,0 +1,31 @@
+/*
+* @Author: lcm
+* @Date:   2017-04-18 13:45:43
+* @Last Modified by:   lcm
+* @Last Modified time: 2017-04-20 17:30:16
+*/
+@import '../../../style/_include/_all';
+#app{
+  smoothing: grayscale;
+  text-align: center;
+  margin-top: 60px;
+  color: $red;
+}
+
+h2{
+  color:$black;
+   smoothing: grayscale;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}

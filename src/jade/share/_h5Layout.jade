@@ -1,0 +1,22 @@
+doctype html
+html(style="font-size:100px")
+  |<!--[if IE 7]><html class="ie ie7 ltie9"><![endif]-->
+  |<!--[if IE 8]><html class="ie ie8 ltie9"><![endif]-->
+  |<!--[if gte IE 9]><html class="ie ie9"><![endif]-->
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport"   content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    - var hasH5 = false;
+    - var hasBodyBg = false;
+    block pageTitle
+    script.
+      var scale = 1 / devicePixelRatio;
+      document.querySelector('meta[name="viewport"]').setAttribute('content','initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+      var deviceWidth = document.documentElement.clientWidth;
+      document.documentElement.style.fontSize = deviceWidth / 10 + 'px';
+      var H=window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
+
+  body(class=hasBodyBg ? 'hasBodyBg' : '')
+    block pageContent
+    block pageScript

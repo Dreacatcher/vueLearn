@@ -2,7 +2,7 @@
 * @Author: lcm
 * @Date:   2017-04-18 21:16:21
 * @Last Modified by:   lcm
-* @Last Modified time: 2017-04-18 22:17:55
+* @Last Modified time: 2017-04-24 14:24:49
 */
 
 'use strict';
@@ -20,7 +20,6 @@ new Vue({
 })
 也可以
 new Vue({}).$mount('元素的id');
-
 
 1、指令：
 v-bind:元素的属性='Vue实例的属性';
@@ -115,7 +114,133 @@ v-for=’单体 in Vue中的属性（数组）‘
 	})
 
 6、看到实例
+7、dom模板实例说明
+	 DOM 作为模版时（例如，将 el 选项挂载到一个已存在的元素上）, 你会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析和标准化 HTML 后才能获取模版内容。尤其像这些元素 <ul> ， <ol>， <table> ， <select> 限制了能被它包裹的元素， <option> 只能出现在其它元素内部。
+	 如下会报错：
+	<table>
+	  <my-row>...</my-row>
+	</table>
 
+	自定义组件 <my-row> 被认为是无效的内容，因此在渲染的时候会导致错误。变通的方案是使用特殊的 is 属性：
+	<table>
+	  <tr is="my-row"></tr>
+	</table>
+	应当注意，如果您使用来自以下来源之一的字符串模板，这些限制将不适用：
+		<script type="text/x-template">
+		JavaScript内联模版字符串
+		.vue 组件
+8、在使用组件的时候，即：Vue.components
+data 必须是函数
+
+
+9、使用computed来设置计算属性
+10、 props: ['message']中子组件中的接收属性必须以字符串的形式
+	Vue.component('child', {
+	  // 声明 props
+	  props: ['message'],
+	  // 就像 data 一样，prop 可以用在模板内
+	  // 同样也可以在 vm 实例中像 “this.message” 这样使用
+	  template: '<span>{{ message }}</span>'
+	})
+
+	然后向它传入一个普通字符串：
+		<child message="hello!"></child>
+
+11、驼峰式与短横线隔开式在组件的使用
+	<!-- kebab-case in HTML 短横线隔开式 -->
+	<child my-message="hello!"></child>
+
+	短横线隔开式属性转问驼峰式
+	Vue.component('child', {
+	  // camelCase in JavaScript
+	  props: ['myMessage'],
+	  template: '<span>{{ myMessage }}</span>'
+	})
+12、简写
+	v-bind:==> :
+	v-on: ==> &:
+13、传递实践的数字
+	<!-- 传递了一个字符串"1" -->
+	<comp some-prop="1"></comp>
+
+	<!-- 传递实际的数字 -->
+	<comp v-bind:some-prop="1"></comp>
+
+
+14、通常有两种改变 prop 的情况：
+	prop 作为初始值传入，子组件之后只是将它的初始值作为本地数据的初始值使用；
+	prop 作为需要被转变的原始值传入。
+	更确切的说这两种情况是：
+	定义一个局部 data 属性，并将 prop 的初始值作为局部数据的初始值。
+		props: ['initialCounter'],
+		data: function () {
+		  return { counter: this.initialCounter }
+		}
+	反向修改size属性的值
+	定义一个 computed 属性，此属性从 prop 的值计算得出。
+		props: ['size'],
+		computed: {
+		  normalizedSize: function () {
+		    return this.size.trim().toLowerCase()
+		  }
+		}
+
+
+
+15、使用 $on(eventName) 监听事件和使用 $emit(eventName) 触发事件
+父组件可以在使用子组件的地方直接用 v-on 来监听子组件触发的事件。
+下面是一个例子：
+	<div id="counter-event-example">
+	  <p>{{ total }}</p>
+	  <button-counter v-on:increment="incrementTotal"></button-counter>
+	  <button-counter v-on:increment="incrementTotal"></button-counter>
+	</div>
+	Vue.component('button-counter', {
+	  template: '<button v-on:click="increment">{{ counter }}</button>',
+	  data: function () {
+	    return {
+	      counter: 0
+	    }
+	  },
+	  methods: {
+	    increment: function () {
+	      this.counter += 1
+	      this.$emit('increment')
+	    }
+	  },
+	})
+	new Vue({
+	  el: '#counter-event-example',
+	  data: {
+	    total: 0
+	  },
+	  methods: {
+	    incrementTotal: function () {
+	      this.total += 1
+	    }
+	  }
+	})
+	在本例中，子组件已经和它外部完全解耦了。它所做的只是触发一个父组件关心的内部事件。
+
+看到
+https://vuefe.cn/v2/guide/components.html#Customizing-Component-v-model
+自定义事件
+
+
+
+注意事项
+	由于 JavaScript 的限制， Vue 不能检测以下变动的数组：
+	当你利用索引直接设置一个项时，例如： 
+		vm.items[indexOfItem] = newValue
+	当你修改数组的长度时，例如： 
+		vm.items.length = newLength
+	为了避免第一种情况，以下两种方式将达到像 vm.items[indexOfItem] = newValue 的效果， 同时也将触发状态更新：
+	// Vue.set
+		Vue.set(example1.items, indexOfItem, newValue)
+	// Array.prototype.splice`
+		example1.items.splice(indexOfItem, 1, newValue)
+	避免第二种情况，使用 splice：
+		example1.items.splice(newLength)
 
 
 

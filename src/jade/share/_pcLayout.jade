@@ -1,0 +1,15 @@
+doctype html
+html
+  |<!--[if IE 7]><html class="ie ie7 ltie9"><![endif]-->
+  |<!--[if IE 8]><html class="ie ie8 ltie9"><![endif]-->
+  |<!--[if gte IE 9]><html class="ie ie9"><![endif]-->
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    block pageTitle
+    //- link(rel="stylesheet" href="../Content/css/reset.css")
+    //- link(rel="stylesheet" href="../Content/css/themes.css")
+
+  body(class=hasBodyBg ? 'hasBodyBg' : '')
+    block pageContent
+    block pageScript

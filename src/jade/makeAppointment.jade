@@ -1,0 +1,14 @@
+extends share/_h5Layout
+
+block pageTitle
+  title makeAppointment主页
+  //- var hasBodyBg = true;
+
+block pageContent
+  div#makeAppointment
+block pageScript
+  include share/_script
+  // componnets 
+  script(src='/dist/makeAppointmentMain.build.js')
+  script.
+    

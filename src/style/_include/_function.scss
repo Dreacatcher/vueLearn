@@ -1,5 +1,5 @@
-@function r-size($size){
-  @return 0rem + $size / 16
+@function px2rem($px,$size:1) {
+  @return $px / $baseFontSize * $size*1rem;
 }
 
 @function relative-size($rota){
@@ -14,3 +14,4 @@
   	@return url(#{$imgUrl}/#{$img}?t=#{$cvs})
   }
 }
+

@@ -1,0 +1,18 @@
+extends share/_pcLayout
+block pageTitle
+  title 这是一个PC demo页面
+  //- var hasBodyBg = true;
+block pageContent
+  div#header
+  div#schoolMap
+  div#footer
+  
+block pageScript
+  include share/_script
+  // PC header
+  script(src='http://guiyang.scity.cn/static/common/js/common_header.js')
+  // componnets 
+  script(src='/dist/schoolMapMain.build.js')
+  script.
+
+    
